@@ -9,7 +9,6 @@ import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 
 import ToggleTheme from "../components/ToogleTheme";
-import { Navigate } from "react-router-dom";
 
 export default function Home() {
   const navigate = useNavigate();
