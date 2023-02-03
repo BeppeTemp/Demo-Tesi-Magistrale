@@ -1,6 +1,4 @@
-import React from "react";
-
-import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
@@ -9,16 +7,12 @@ import TextField from "@mui/material/TextField";
 import Container from "@mui/system/Container";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
-import useTheme from "@mui/material/styles/useTheme";
 
-import { toggleTheme } from "../app/theme/themeSlice";
+import ToggleTheme from "../components/ToogleTheme";
+import { Navigate } from "react-router-dom";
 
 export default function Home() {
-  const dispatch = useDispatch();
-  const theme = useTheme();
+  const navigate = useNavigate();
 
   return (
     <Container maxWidth="sm">
@@ -60,31 +54,16 @@ export default function Home() {
           variant="contained"
           size="large"
           sx={{ marginBottom: 1 }}
+          onClick={() => {
+            navigate({
+              pathname: "image",
+            });
+          }}
           fullWidth
         >
           Login
         </Button>
-        <Box
-          sx={{
-            display: "flex",
-            width: "100%",
-            alignItems: "center",
-            justifyContent: "right",
-          }}
-        >
-          {theme.palette.mode == "dark" ? (
-            <Typography>Modalità scura</Typography>
-          ) : (
-            <Typography>Modalità chiara</Typography>
-          )}
-          <IconButton color="inherit" onClick={() => dispatch(toggleTheme())}>
-            {theme.palette.mode == "dark" ? (
-              <Brightness7Icon />
-            ) : (
-              <Brightness4Icon />
-            )}
-          </IconButton>
-        </Box>
+        <ToggleTheme />
       </Paper>
     </Container>
   );
